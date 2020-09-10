@@ -1,10 +1,12 @@
+import pickHandler from "./pickHandler";
+import deleteHandler from "./deleteHandler";
 import helpHandler from "./helpHandler";
-import listHandler from "./listHandler";
 import versionHandler from "./versionHandler";
 
 const commands = {
   help: helpHandler,
-  list: listHandler,
+  pick: pickHandler,
+  delete: deleteHandler,
   version: versionHandler,
 };
 
