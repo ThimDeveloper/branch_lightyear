@@ -23,9 +23,11 @@
   "license": "ISC",
   "dependencies": {
     "chalk": "^4.1.0",
+    "cli-spinners": "^2.4.0",
     "esm": "^3.2.25",
     "inquirer": "^7.3.3",
     "loading-cli": "^1.1.0",
-    "minimist": "^1.2.5"
+    "minimist": "^1.2.5",
+    "ora": "^5.1.0"
   }
 }

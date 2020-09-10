@@ -1,27 +1,31 @@
 import util from "util";
 import chalk from "chalk";
 import createBranchPromptPromise from "./createBranchPromptPromise";
+import ora from "ora";
+import { dots2 } from "cli-spinners";
+
 const exec = util.promisify(require("child_process").exec);
 
 export default async () => {
+  let spinner;
   try {
     const { branch } = await createBranchPromptPromise(
       "Which branch would you like to check out?"
     );
+    spinner = ora({
+      spinner: dots2,
+      text: `Branch Lightyear - checking out branch: ${branch}`,
+    });
 
+    spinner.start();
     if (branch) {
-      console.log(
-        chalk.bold.green(`Branch Lightyear - checking out branch: ${branch}`)
-      );
       const checkoutScript = `git checkout ${branch}`;
-      const { stdout, stderr } = await exec(checkoutScript);
-      console.log(`${stdout}\n${chalk.green(stderr)}`);
+      const { stderr } = await exec(checkoutScript);
+      spinner.succeed(stderr);
     }
   } catch (error) {
-    console.log(
-      chalk.red(`Branch Lightyear - error while checking out branch`),
-      error
-    );
+    spinner.fail(`Branch Lightyear - error while checking out branch`);
+    console.error(error);
   }
 
   return;
