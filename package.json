@@ -1,0 +1,31 @@
+{
+  "name": "@thimlohsedev/branch_lightyear",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "bin": {
+    "@thimlohsedev/bl": "bin/branch_lightyear",
+    "bl": "bin/branch_lightyear"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "cli",
+    "git",
+    "branch",
+    "branch_lightyear"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^4.1.0",
+    "esm": "^3.2.25",
+    "inquirer": "^7.3.3",
+    "loading-cli": "^1.1.0",
+    "minimist": "^1.2.5"
+  }
+}
