@@ -28,6 +28,10 @@ export async function cli(rawArgs) {
       commands.help(argv);
       break;
     }
+    case "version": {
+      commands.version(argv);
+      break;
+    }
     default:
       console.log(chalk.red(`No such command available. Try "help"`));
       break;

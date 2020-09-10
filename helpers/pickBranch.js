@@ -11,14 +11,16 @@ export default async () => {
 
     if (branch) {
       console.log(
-        chalk.green(`Branch Lightyear - checking out branch: ${branch}`)
+        chalk.bold.green(`Branch Lightyear - checking out branch: ${branch}`)
       );
       const checkoutScript = `git checkout ${branch}`;
-      await exec(checkoutScript);
+      const { stdout, stderr } = await exec(checkoutScript);
+      console.log(`${stdout}\n${chalk.green(stderr)}`);
     }
   } catch (error) {
     console.log(
-      chalk.red(`Branch Lightyear - error while checking out branch: ${branch}`)
+      chalk.red(`Branch Lightyear - error while checking out branch`),
+      error
     );
   }
 
