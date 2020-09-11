@@ -4,8 +4,8 @@ const exec = util.promisify(require("child_process").exec);
 const gitListScript = `git branch`;
 const formatBranchesString = (branchesString) => {
   return branchesString
-    .replace("*", "")
     .split("\n")
+    .filter((branch) => !branch.includes("*"))
     .map((branch) => branch.trim());
 };
 
