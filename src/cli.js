@@ -4,8 +4,8 @@ import commands from "./../commands";
 
 const parseArgs = (rawArgs) =>
   minimist(rawArgs.slice(2), {
-    string: ["pick", "delete", "help"],
-    boolean: [, "version"],
+    string: ["pick", "delete"],
+    boolean: ["version"],
     alias: {
       v: "version",
     },
