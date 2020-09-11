@@ -17,10 +17,15 @@ const helpDescription = {
 export default (args) => {
   const subCommand = args._[1] ? args._[1] : null;
 
-  if (subCommand) {
-    console.log(helpDescription[subCommand]);
-  } else {
-    console.log(helpDescription.main);
+  try {
+    if (subCommand) {
+      console.log(helpDescription[subCommand]);
+    } else {
+      console.log(helpDescription.main);
+    }
+  } catch (e) {
+    console.error(e);
   }
+
   return;
 };
