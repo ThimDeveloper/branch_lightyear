@@ -9,9 +9,9 @@ const exec = util.promisify(require("child_process").exec);
 export default async () => {
   let spinner;
   try {
-    const { branch } = await createBranchPromptPromise(
-      "Which branch would you like to check out?"
-    );
+    const { branch } = await createBranchPromptPromise({
+      message: "Which branch would you like to check out?",
+    });
     spinner = ora({
       spinner: bouncingBall,
       text: `Branch Lightyear - checking out branch: ${branch}`,
