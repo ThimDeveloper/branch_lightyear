@@ -2,7 +2,7 @@ import util from "util";
 import chalk from "chalk";
 import createBranchPromptPromise from "./createBranchPromptPromise";
 import ora from "ora";
-import { dots2 } from "cli-spinners";
+import { bouncingBall } from "cli-spinners";
 
 const exec = util.promisify(require("child_process").exec);
 
@@ -13,7 +13,7 @@ export default async () => {
       "Which branch would you like to check out?"
     );
     spinner = ora({
-      spinner: dots2,
+      spinner: bouncingBall,
       text: `Branch Lightyear - checking out branch: ${branch}`,
     });
 

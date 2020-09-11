@@ -1,21 +1,20 @@
 import util from "util";
-import chalk from "chalk";
 import createBranchPromptPromise from "./createBranchPromptPromise";
 const exec = util.promisify(require("child_process").exec);
 import ora from "ora";
-import { dots2 } from "cli-spinners";
-import { stderr } from "process";
+import { bouncingBall } from "cli-spinners";
 
 export default async () => {
   let spinner;
   try {
-    const { branch } = await createBranchPromptPromise(
-      "Which branch would you like to delete?"
-    );
+    const { branch } = await createBranchPromptPromise({
+      message: "Which branch would you like to delete?",
+      shouldConfirm: true,
+    });
 
     if (branch) {
       spinner = ora({
-        spinner: dots2,
+        spinner: bouncingBall,
         text: `Branch Lightyear - deleting branch: ${branch}`,
       });
 

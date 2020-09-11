@@ -1,9 +1,9 @@
 import inquirer from "inquirer";
 import getBranchList from "./getBranchList";
 
-export default async (message) => {
+export default async ({ message, shouldConfirm = false }) => {
   const branchList = await getBranchList();
-  return inquirer.prompt([
+  const questions = inquirer.prompt([
     {
       message: `${message}`,
       type: "list",
@@ -12,4 +12,13 @@ export default async (message) => {
       pageSize: 20,
     },
   ]);
+
+  if (shouldConfirm) {
+    questions.push({
+      message: "Are you sure?",
+      type: "confirm",
+      name: "confirmed",
+    });
+  }
+  return questions;
 };
