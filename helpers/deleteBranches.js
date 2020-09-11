@@ -2,7 +2,7 @@ import util from "util";
 import createBranchPromptPromise from "./createBranchPromptPromise";
 const exec = util.promisify(require("child_process").exec);
 import ora from "ora";
-import { bouncingBall } from "cli-spinners";
+import { material } from "cli-spinners";
 
 export default async () => {
   let spinner;
@@ -14,12 +14,12 @@ export default async () => {
     });
 
     if (!confirmed) return;
-
     if (branches) {
       spinner = ora({
-        spinner: bouncingBall,
+        spinner: material,
         text: `Branch Lightyear - deleting multiple branches: ${branches}`,
       });
+      spinner.start();
       await branches.forEach(async (branch) => {
         const deleteScript = `git branch -D ${branch}`;
         await exec(deleteScript);
@@ -29,6 +29,7 @@ export default async () => {
         `Branch Lightyear - finished deleting multiple branches: ${branches}`
       );
     }
+    spinner.stop();
   } catch (error) {
     spinner.fail(`Branch Lightyear - error while deleting branch`);
     console.error(error);
