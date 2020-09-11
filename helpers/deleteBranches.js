@@ -15,19 +15,19 @@ export default async () => {
 
     if (!confirmed) return;
 
-   
     if (branches) {
-        branches.forEach((branch) => {
-            spinner = ora({
-                spinner: bouncingBall,
-                text: `Branch Lightyear - deleting branch: ${branch}`,
-              });
-        
-              const deleteScript = `git branch -D ${branch}`;
-              const { stderr } = await exec(deleteScript);
-              spinner.succeed(stderr);
-        })
-     
+      spinner = ora({
+        spinner: bouncingBall,
+        text: `Branch Lightyear - deleting multiple branches: ${branches}`,
+      });
+      await branches.forEach(async (branch) => {
+        const deleteScript = `git branch -D ${branch}`;
+        await exec(deleteScript);
+      });
+
+      spinner.succeed(
+        `Branch Lightyear - finished deleting multiple branches: ${branches}`
+      );
     }
   } catch (error) {
     spinner.fail(`Branch Lightyear - error while deleting branch`);
