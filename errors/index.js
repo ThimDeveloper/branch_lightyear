@@ -1,3 +1,5 @@
 import NoBranchError from './NoBranchError';
+import PickBranchError from './PickBranchError';
+import DeleteBranchError from './DeleteBranchError';
 
-export { NoBranchError };
+export { NoBranchError, PickBranchError, DeleteBranchError };

@@ -1,20 +1,11 @@
 import chalk from 'chalk';
-import * as errors from './../errors';
+
+const createOperationFailedMessage = (name, message) =>
+  `${chalk.red.bold(name)}: ${chalk.italic.underline(message)}`;
 
 const ErroHandler = (err) => {
-  switch (err) {
-    case errors.NoBranchError: {
-      console.error(
-        `Operation failed due to: ${chalk.red(errors.NoBranchError.message)}`
-      );
-      break;
-    }
-    default: {
-      console.error(err);
-      break;
-    }
-  }
-
+  const errorMessage = createOperationFailedMessage(err.name, err.message);
+  console.error(errorMessage);
   return;
 };
 

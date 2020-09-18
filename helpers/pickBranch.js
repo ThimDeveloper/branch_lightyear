@@ -1,13 +1,13 @@
 import util from 'util';
-import chalk from 'chalk';
-import createBranchPromptPromise from './createBranchPromptPromise';
 import ora from 'ora';
 import { dots } from 'cli-spinners';
+import createBranchPromptPromise from './createBranchPromptPromise';
+import { PickBranchError } from '../errors';
 
 const exec = util.promisify(require('child_process').exec);
 
 export default async () => {
-  let spinner;
+  let spinner = ora();
   try {
     const { branch } = await createBranchPromptPromise({
       message: 'Which branch would you like to check out?',
@@ -27,8 +27,7 @@ export default async () => {
     spinner.stop();
   } catch (error) {
     spinner.fail(`Branch Lightyear - error while checking out branch`);
-    console.error(error);
-    throw error;
+    throw new PickBranchError(error.message);
   }
 
   return;

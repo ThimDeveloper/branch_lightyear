@@ -4,3 +4,5 @@ class NoBranchError extends Error {
     this.name = 'NoBranchError';
   }
 }
+
+export default NoBranchError;
