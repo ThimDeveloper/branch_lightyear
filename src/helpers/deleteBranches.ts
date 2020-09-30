@@ -22,7 +22,7 @@ export default async function (): Promise<void | Error> {
         text: `Branch Lightyear - deleting multiple branches: ${branches}`,
       });
       spinner.start();
-      await branches.forEach(async (branch) => {
+      await branches.forEach(async (branch: string) => {
         const deleteScript = `git branch -D ${branch}`;
         await exec(deleteScript);
       });
