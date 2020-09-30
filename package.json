@@ -12,10 +12,7 @@
   },
   "files": [
     "bin/**/*",
-    "dist/**/*",
-    "package.json",
-    "yarn.lock",
-    "package-lock.json"
+    "dist/**/*"
   ],
   "repository": {
     "type": "git",
