@@ -1,19 +1,19 @@
-import inquirer, { AllChoiceMap } from 'inquirer';
+import inquirer, { Answers, Question, CheckboxQuestion, ListQuestion, ConfirmQuestion } from 'inquirer';
 import getBranchList from './getBranchList';
 
 interface BranchPromptParams {
   message: string;
-  shouldConfirm: boolean;
-  multipleChoice: boolean;
+  shouldConfirm?: boolean;
+  multipleChoice?: boolean;
 }
 export default async function ({
   message,
   shouldConfirm = false,
   multipleChoice = false,
-}: BranchPromptParams): Promise<inquirer.Answers> {
+}: BranchPromptParams): Promise<Answers> {
   const branchList = await getBranchList();
 
-  let questions: inquirer.Question[] = [];
+  let questions: Question[] = [];
 
   if (multipleChoice) {
     questions = [
@@ -23,7 +23,7 @@ export default async function ({
         name: 'branches',
         choices: branchList,
         pageSize: 30,
-      } as inquirer.CheckboxQuestion,
+      } as CheckboxQuestion,
     ];
   } else {
     questions = [
@@ -33,7 +33,7 @@ export default async function ({
         name: 'branch',
         choices: branchList,
         pageSize: 30,
-      } as inquirer.ListQuestion,
+      } as ListQuestion,
     ];
   }
 
@@ -42,7 +42,7 @@ export default async function ({
       message: 'Are you sure?',
       type: 'confirm',
       name: 'confirmed',
-    } as inquirer.ConfirmQuestion);
+    } as ConfirmQuestion);
   }
   const prompt = inquirer.prompt(questions);
 

@@ -19,7 +19,7 @@ export async function cli(rawArgs: string[]): Promise<void> {
 
     switch (arg0) {
       case 'pick': {
-        await commands.pick(argv);
+        await commands.pick();
         break;
       }
       case 'delete': {
@@ -31,10 +31,11 @@ export async function cli(rawArgs: string[]): Promise<void> {
         break;
       }
       case 'version': {
-        commands.version(argv);
+        commands.version();
         break;
       }
       default:
+        // eslint-disable-next-line no-console
         console.log(chalk.red(`No such command available. Try "help"`));
         break;
     }
