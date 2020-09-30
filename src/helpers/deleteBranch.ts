@@ -1,11 +1,12 @@
 import util from 'util';
-const exec = util.promisify(require('child_process').exec);
+import childProcess from 'child_process';
+const exec = util.promisify(childProcess.exec);
 import ora from 'ora';
 import { dots } from 'cli-spinners';
 import createBranchPromptPromise from './createBranchPromptPromise';
 import { DeleteBranchError } from '../errors';
 
-export default async () => {
+export default async function (): Promise<void | Error> {
   let spinner = ora();
   try {
     const { branch, confirmed } = await createBranchPromptPromise({
@@ -32,4 +33,4 @@ export default async () => {
   }
 
   return;
-};
+}

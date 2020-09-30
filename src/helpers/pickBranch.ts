@@ -3,10 +3,10 @@ import ora from 'ora';
 import { dots } from 'cli-spinners';
 import createBranchPromptPromise from './createBranchPromptPromise';
 import { PickBranchError } from '../errors';
+import childProcess from 'child_process';
+const exec = util.promisify(childProcess.exec);
 
-const exec = util.promisify(require('child_process').exec);
-
-export default async () => {
+export default async function (): Promise<void | Error> {
   let spinner = ora();
   try {
     const { branch } = await createBranchPromptPromise({
@@ -31,4 +31,4 @@ export default async () => {
   }
 
   return;
-};
+}

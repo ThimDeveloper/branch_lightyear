@@ -1,4 +1,6 @@
-const helpDescription = {
+import { ParsedArgs } from 'minimist';
+
+const helpDescription: Record<string, string> = {
   main: `
         bl [command] <option>
     
@@ -14,16 +16,19 @@ const helpDescription = {
         `,
 };
 
-export default (args) => {
-  const subCommand = args._[1] ? args._[1] : null;
+export default (argv: ParsedArgs): void => {
+  const subCommand = argv._[1] ? argv._[1] : null;
 
   try {
     if (subCommand) {
+      // eslint-disable-next-line no-console
       console.log(helpDescription[subCommand]);
     } else {
+      // eslint-disable-next-line no-console
       console.log(helpDescription.main);
     }
   } catch (e) {
+    // eslint-disable-next-line no-console
     console.error(e);
   }
 
