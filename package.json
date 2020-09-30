@@ -25,7 +25,7 @@
     "start": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/entry/cli.ts",
     "clean": "rimraf dist",
     "build": "yarn clean && tsc",
-    "local": "npm unlink && npm link",
+    "local": "yarn unlink && yarn link",
     "refresh": "rm -rf ./node_modules ./package-lock.json ./yarn.lock && rm -rf dist && yarn",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "lint": "eslint",
