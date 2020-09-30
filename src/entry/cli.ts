@@ -3,7 +3,7 @@ import chalk from 'chalk';
 import commands from '../commands';
 import { ErrorHandler } from '../handlers';
 
-const parseArgs = (rawArgs) =>
+const parseArgs = (rawArgs: string[]) =>
   minimist(rawArgs.slice(2), {
     string: ['pick', 'delete'],
     boolean: ['version'],
@@ -12,7 +12,7 @@ const parseArgs = (rawArgs) =>
     },
   });
 
-export async function cli(rawArgs) {
+export async function cli(rawArgs: string[]): Promise<void> {
   try {
     const argv = parseArgs(rawArgs);
     const arg0 = argv._[0] || 'help';
