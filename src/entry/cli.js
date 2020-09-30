@@ -1,6 +1,6 @@
 import minimist from 'minimist';
 import chalk from 'chalk';
-import commands from './../commands';
+import commands from '../commands';
 import { ErrorHandler } from '../handlers';
 
 const parseArgs = (rawArgs) =>

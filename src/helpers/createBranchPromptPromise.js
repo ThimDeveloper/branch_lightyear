@@ -1,11 +1,7 @@
-import inquirer from "inquirer";
-import getBranchList from "./getBranchList";
+import inquirer from 'inquirer';
+import getBranchList from './getBranchList';
 
-export default async ({
-  message,
-  shouldConfirm = false,
-  multipleChoice = false,
-}) => {
+export default async ({ message, shouldConfirm = false, multipleChoice = false }) => {
   const branchList = await getBranchList();
 
   let questions = [];
@@ -14,8 +10,8 @@ export default async ({
     questions = [
       {
         message: `${message}`,
-        type: "checkbox",
-        name: "branches",
+        type: 'checkbox',
+        name: 'branches',
         choices: branchList,
         pageSize: 30,
       },
@@ -24,8 +20,8 @@ export default async ({
     questions = [
       {
         message: `${message}`,
-        type: "list",
-        name: "branch",
+        type: 'list',
+        name: 'branch',
         choices: branchList,
         pageSize: 30,
       },
@@ -34,9 +30,9 @@ export default async ({
 
   if (shouldConfirm) {
     questions.push({
-      message: "Are you sure?",
-      type: "confirm",
-      name: "confirmed",
+      message: 'Are you sure?',
+      type: 'confirm',
+      name: 'confirmed',
     });
   }
   const prompt = inquirer.prompt(questions);
