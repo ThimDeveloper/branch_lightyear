@@ -20,8 +20,8 @@
   },
   "scripts": {
     "prepare": "yarn build",
-    "prepublishOnly": "npm run lint",
-    "preversion": "npm run lint",
+    "prepublishOnly": "yarn lint",
+    "preversion": "yarn lint",
     "postversion": "git push && git push --tags",
     "start": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/entry/cli.ts",
     "build": "rimraf dist &&  tsc --p tsconfig.json",
