@@ -1,5 +1,5 @@
-import deleteBranch from "../helpers/deleteBranch";
-import deleteBranches from "../helpers/deleteBranches";
+import deleteBranch from '../helpers/deleteBranch';
+import deleteBranches from '../helpers/deleteBranches';
 
 export default async (argv) => {
   if (!argv.m) {

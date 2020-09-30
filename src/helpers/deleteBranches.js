@@ -26,9 +26,7 @@ export default async () => {
         await exec(deleteScript);
       });
 
-      spinner.succeed(
-        `Branch Lightyear - finished deleting multiple branches: ${branches}`
-      );
+      spinner.succeed(`Branch Lightyear - finished deleting multiple branches: ${branches}`);
     }
     spinner.stop();
   } catch (error) {

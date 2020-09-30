@@ -16,7 +16,6 @@ export default async () => {
   const branchList = formatBranchesString(stdout.trim());
 
   const isBranchListEmptyOrNull = anyPass([isNil, isEmpty])(branchList);
-  if (isBranchListEmptyOrNull)
-    throw new NoBranchError('No other active branches found.');
+  if (isBranchListEmptyOrNull) throw new NoBranchError('No other active branches found.');
   return branchList;
 };
