@@ -18,15 +18,15 @@
     "url": "git+https://github.com/ThimDeveloper/branch_lightyear.git"
   },
   "scripts": {
-    "prepare": "yarn build",
-    "prepublishOnly": "yarn lint",
-    "preversion": "yarn lint",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm run lint",
+    "preversion": "npm run lint",
     "postversion": "git push && git push --tags",
     "start": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/entry/cli.ts",
     "clean": "rimraf dist",
-    "build": "yarn clean && tsc",
+    "build": "npm run clean && tsc",
     "local": "npm unlink && npm link",
-    "refresh": "rm -rf ./node_modules ./package-lock.json ./yarn.lock && rm -rf dist && yarn",
+    "refresh": "rm -rf ./node_modules ./package-lock.json && rm -rf dist && npm install",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "lint": "eslint",
     "lint:fix": "eslint --fix"
