@@ -41,11 +41,11 @@
   "license": "MIT",
   "dependencies": {
     "chalk": "^4.1.0",
+    "ora": "^5.1.0",
     "cli-spinners": "^2.4.0",
     "esm": "^3.2.25",
     "inquirer": "^7.3.3",
     "minimist": "^1.2.5",
-    "ora": "^5.1.0",
     "ramda": "^0.27.1",
     "tslib": "^2.0.1"
   },
