@@ -26,7 +26,7 @@
     "clean": "rimraf dist",
     "build": "npm run clean && tsc",
     "local": "npm unlink && npm link",
-    "refresh": "rm -rf ./node_modules ./package-lock.json && rm -rf dist && npm install",
+    "refresh": "rm -rf ./dist ./node_modules ./package-lock.json && npm install",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "lint": "eslint",
     "lint:fix": "eslint --fix"
