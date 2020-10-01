@@ -10,7 +10,7 @@
     "access": "public"
   },
   "files": [
-    "bin/**/*",
+    "bin/branch_lightyear",
     "dist/**/*"
   ],
   "repository": {
