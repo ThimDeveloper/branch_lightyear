@@ -3,7 +3,7 @@
     "es2021": true,
     "node": true
   },
-  "ignorePatterns": ["bin", "node_modules", ""],
+  "ignorePatterns": ["bin", "node_modules"],
   "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
