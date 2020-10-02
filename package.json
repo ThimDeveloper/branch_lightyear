@@ -34,8 +34,12 @@
         "lint": "eslint",
         "lint:fix": "eslint --fix",
         "use:npmReadme": "mv 'README.md' 'git.README.md' && mv 'npm.README.md' 'README.md'",
-        "use:gitReadme": "mv 'README.md' 'npm.README.md' && mv 'git.README.md' 'README.md'"
+        "use:gitReadme": "mv 'README.md' 'npm.README.md' && mv 'git.README.md' 'README.md'",
+        "precommit-msg": "echo 'Pre-commit checks....' && exit 0"
     },
+    "pre-commit": [
+        "precommit-msg"
+    ],
     "keywords": [
         "cli",
         "git",
@@ -67,6 +71,7 @@
         "@typescript-eslint/parser": "^4.3.0",
         "eslint": "^7.10.0",
         "npm-run-all": "^4.1.5",
+        "pre-commit": "^1.2.2",
         "prettier": "^2.1.2",
         "rimraf": "^3.0.2",
         "ts-node": "^9.0.0",
