@@ -19,7 +19,7 @@ export async function cli(rawArgs: string[]): Promise<void> {
 
         switch (arg0) {
             case 'pick': {
-                await commands.pick()
+                await commands.pick(argv)
                 break
             }
             case 'delete': {

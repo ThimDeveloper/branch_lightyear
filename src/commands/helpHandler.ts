@@ -4,7 +4,7 @@ const helpDescription: Record<string, string> = {
     main: `
         bl [command] <option>
     
-        pick ........................... checkout local git branch
+        pick ........................... checkout git branch
         delete <option> ................ delete local git branch
         version ........................ show package version
         help [command] ................. show help menu
@@ -13,6 +13,11 @@ const helpDescription: Record<string, string> = {
         bl delete <option>
 
         -m, --multiple ....... choose multiple branches to delete at once
+        `,
+    pick: `
+        bl pick <option>
+
+        -r, --remote ....... checkout remote branch
         `,
 }
 
