@@ -1,66 +1,69 @@
 {
-  "name": "@thimlohsedev/branch_lightyear",
-  "version": "1.5.0",
-  "description": "The comfort of Git in an IDE right in the terminal",
-  "bin": {
-    "@thimlohsedev/bl": "bin/branch_lightyear",
-    "bl": "bin/branch_lightyear"
-  },
-  "publishConfig": {
-    "access": "public"
-  },
-  "files": [
-    "bin/branch_lightyear",
-    "dist/**/*"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ThimDeveloper/branch_lightyear.git"
-  },
-  "scripts": {
-    "prepare": "npm run build",
-    "prepublishOnly": "npm run lint",
-    "preversion": "npm run lint",
-    "postversion": "git push && git push --tags",
-    "start": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/entry/cli.ts",
-    "clean": "rimraf dist",
-    "build": "npm run clean && tsc",
-    "local": "npm unlink && npm link",
-    "refresh": "rm -rf ./dist ./node_modules ./package-lock.json && npm install",
-    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
-    "lint": "eslint",
-    "lint:fix": "eslint --fix"
-  },
-  "keywords": [
-    "cli",
-    "git",
-    "branch",
-    "branch_lightyear"
-  ],
-  "author": "",
-  "license": "MIT",
-  "dependencies": {
-    "chalk": "^4.1.0",
-    "ora": "^5.1.0",
-    "cli-spinners": "^2.4.0",
-    "esm": "^3.2.25",
-    "inquirer": "^7.3.3",
-    "minimist": "^1.2.5",
-    "ramda": "^0.27.1",
-    "tslib": "^2.0.1"
-  },
-  "devDependencies": {
-    "@types/chalk": "^2.2.0",
-    "@types/inquirer": "^7.3.1",
-    "@types/minimist": "^1.2.0",
-    "@types/node": "^14.11.2",
-    "@types/ramda": "^0.27.19",
-    "@typescript-eslint/eslint-plugin": "^4.3.0",
-    "@typescript-eslint/parser": "^4.3.0",
-    "eslint": "^7.10.0",
-    "prettier": "^2.1.2",
-    "rimraf": "^3.0.2",
-    "ts-node": "^9.0.0",
-    "typescript": "^4.0.3"
-  }
+    "name": "@thimlohsedev/branch_lightyear",
+    "version": "1.5.0",
+    "description": "The comfort of Git in an IDE right in the terminal",
+    "bin": {
+        "@thimlohsedev/bl": "bin/branch_lightyear",
+        "bl": "bin/branch_lightyear"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "files": [
+        "bin/branch_lightyear",
+        "dist/**/*"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ThimDeveloper/branch_lightyear.git"
+    },
+    "scripts": {
+        "prepare": "npm run build",
+        "prepublishOnly": "npm run lint",
+        "preversion": "npm run lint",
+        "postversion": "git push && git push --tags",
+        "start": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/entry/cli.ts",
+        "clean": "rimraf dist",
+        "build": "npm run clean && tsc",
+        "local": "npm unlink && npm link",
+        "refresh": "rm -rf ./dist ./node_modules ./package-lock.json && npm install",
+        "ts:check:types": "tsc --noEmit",
+        "format:ts": "prettier --write src/**/*.ts",
+        "format:js": "prettier --write src/**/*.js",
+        "format": "npm run format:js || npm run format:ts",
+        "lint": "eslint",
+        "lint:fix": "eslint --fix"
+    },
+    "keywords": [
+        "cli",
+        "git",
+        "branch",
+        "branch_lightyear"
+    ],
+    "author": "",
+    "license": "MIT",
+    "dependencies": {
+        "chalk": "^4.1.0",
+        "ora": "^5.1.0",
+        "cli-spinners": "^2.4.0",
+        "esm": "^3.2.25",
+        "inquirer": "^7.3.3",
+        "minimist": "^1.2.5",
+        "ramda": "^0.27.1",
+        "tslib": "^2.0.1"
+    },
+    "devDependencies": {
+        "@types/chalk": "^2.2.0",
+        "@types/inquirer": "^7.3.1",
+        "@types/minimist": "^1.2.0",
+        "@types/node": "^14.11.2",
+        "@types/ramda": "^0.27.19",
+        "@typescript-eslint/eslint-plugin": "^4.3.0",
+        "@typescript-eslint/parser": "^4.3.0",
+        "eslint": "^7.10.0",
+        "prettier": "^2.1.2",
+        "rimraf": "^3.0.2",
+        "ts-node": "^9.0.0",
+        "typescript": "^4.0.3"
+    }
 }

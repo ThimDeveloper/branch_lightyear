@@ -1,13 +1,13 @@
-import chalk from 'chalk';
+import chalk from 'chalk'
 
 const createOperationFailedMessage = (name: string, message: string): string =>
-  `${chalk.red.bold(name)}: ${chalk.italic.underline(message)}`;
+    `${chalk.red.bold(name)}: ${chalk.italic.underline(message)}`
 
 const ErroHandler = (err: Error): void => {
-  const errorMessage = createOperationFailedMessage(err.name, err.message);
-  // eslint-disable-next-line no-console
-  console.error(errorMessage);
-  return;
-};
+    const errorMessage = createOperationFailedMessage(err.name, err.message)
+    // eslint-disable-next-line no-console
+    console.error(errorMessage)
+    return
+}
 
-export default ErroHandler;
+export default ErroHandler
