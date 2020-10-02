@@ -35,10 +35,14 @@
         "lint:fix": "eslint --fix",
         "use:npmReadme": "mv 'README.md' 'git.README.md' && mv 'npm.README.md' 'README.md'",
         "use:gitReadme": "mv 'README.md' 'npm.README.md' && mv 'git.README.md' 'README.md'",
-        "precommit-msg": "echo 'Pre-commit checks....' && exit 0"
+        "precommit-msg:start": "echo 'Running pre-commit checks....' && exit 0",
+        "precommit-msg:end": "echo 'Finished pre-commit checks.' && exit 0"
     },
     "pre-commit": [
-        "precommit-msg"
+        "precommit-msg:start",
+        "ts:check:types",
+        "lint",
+        "precommit-msg:end"
     ],
     "keywords": [
         "cli",
