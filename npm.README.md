@@ -60,7 +60,3 @@ bl [command] <option>
 | `version`        | show package version                       |
 | `help`           | show help menu                             |
 | `help [command]` | show help menu for specific command        |
-
-## Check out the code on Github
-
-[Link to repo](https://github.com/ThimDeveloper/branch_lightyear.git)
