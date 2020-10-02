@@ -63,7 +63,7 @@ npm unlink
 ## Command Summary
 
 ```bash
-  bl [command] <option>
+bl [command] <option>
 ```
 
 | Command          | Description                                |

@@ -50,7 +50,7 @@ npm install -g @thimlohsedev/branch_lightyear
 ## Command Summary
 
 ```bash
-  bl [command] <option>
+bl [command] <option>
 ```
 
 | Command          | Description                                |
