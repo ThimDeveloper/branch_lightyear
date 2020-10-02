@@ -1,6 +1,5 @@
 import util from 'util'
 import ora from 'ora'
-import { dots } from 'cli-spinners'
 import createBranchPromptPromise from './createBranchPromptPromise'
 import { PickBranchError } from '../errors'
 import childProcess from 'child_process'
@@ -14,11 +13,7 @@ export default async function (): Promise<void | Error> {
         })
 
         if (branch) {
-            spinner = ora({
-                spinner: dots,
-                text: `Branch Lightyear - checking out branch: ${branch}`,
-            })
-
+            spinner = ora(`Branch Lightyear - checking out branch: ${branch}`)
             spinner.start()
             const checkoutScript = `git checkout ${branch}`
             const { stderr } = await exec(checkoutScript)

@@ -19,10 +19,10 @@
     },
     "scripts": {
         "prepare": "npm run build",
-        "prepublishOnly": "npm run lint",
+        "prepublishOnly": "npm run lint && run-s build use:npmReadme",
+        "postpublish": "npm run use:gitReadme",
         "preversion": "npm run lint",
         "postversion": "git push && git push --tags",
-        "start": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/entry/cli.ts",
         "clean": "rimraf dist",
         "build": "npm run clean && tsc",
         "local": "npm unlink && npm link",
@@ -32,13 +32,18 @@
         "format:js": "prettier --write src/**/*.js",
         "format": "npm run format:js || npm run format:ts",
         "lint": "eslint",
-        "lint:fix": "eslint --fix"
+        "lint:fix": "eslint --fix",
+        "use:npmReadme": "mv 'README.md' 'git.README.md' && mv 'npm.README.md' 'README.md'",
+        "use:gitReadme": "mv 'README.md' 'npm.README.md' && mv 'git.README.md' 'README.md'"
     },
     "keywords": [
         "cli",
         "git",
         "branch",
-        "branch_lightyear"
+        "branch_lightyear",
+        "node",
+        "npm",
+        "efficiency"
     ],
     "author": "",
     "license": "MIT",
@@ -61,6 +66,7 @@
         "@typescript-eslint/eslint-plugin": "^4.3.0",
         "@typescript-eslint/parser": "^4.3.0",
         "eslint": "^7.10.0",
+        "npm-run-all": "^4.1.5",
         "prettier": "^2.1.2",
         "rimraf": "^3.0.2",
         "ts-node": "^9.0.0",

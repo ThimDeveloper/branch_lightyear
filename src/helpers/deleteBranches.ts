@@ -2,7 +2,6 @@ import util from 'util'
 import ora from 'ora'
 import childProcess from 'child_process'
 const exec = util.promisify(childProcess.exec)
-import { dots } from 'cli-spinners'
 import createBranchPromptPromise from './createBranchPromptPromise'
 import { DeleteBranchError } from '../errors'
 
@@ -17,10 +16,9 @@ export default async function (): Promise<void | Error> {
 
         if (!confirmed) return
         if (branches) {
-            spinner = ora({
-                spinner: dots,
-                text: `Branch Lightyear - deleting multiple branches: ${branches}`,
-            })
+            spinner = ora(
+                `Branch Lightyear - deleting multiple branches: ${branches}`
+            )
             spinner.start()
             await branches.forEach(async (branch: string) => {
                 const deleteScript = `git branch -D ${branch}`
