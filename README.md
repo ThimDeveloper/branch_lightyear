@@ -66,10 +66,10 @@ npm unlink
 bl [command] <option>
 ```
 
-| Command          | Description                                |
-| ---------------- | ------------------------------------------ |
-| `pick`           | checkout local git branch from select list |
-| `delete`         | delete local git branch from select list   |
-| `version`        | show package version                       |
-| `help`           | show help menu                             |
-| `help [command]` | show help menu for specific command        |
+| Command          | Description                          |
+| ---------------- | ------------------------------------ |
+| `pick`           | checkout git branch from select list |
+| `delete`         | delete git branch from select list   |
+| `version`        | show package version                 |
+| `help`           | show help menu                       |
+| `help [command]` | show help menu for specific command  |
