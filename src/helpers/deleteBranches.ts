@@ -1,11 +1,12 @@
 import util from 'util';
 import ora from 'ora';
-const exec = util.promisify(require('child_process').exec);
+import childProcess from 'child_process';
+const exec = util.promisify(childProcess.exec);
 import { dots } from 'cli-spinners';
 import createBranchPromptPromise from './createBranchPromptPromise';
 import { DeleteBranchError } from '../errors';
 
-export default async () => {
+export default async function (): Promise<void | Error> {
   let spinner = ora();
   try {
     const { branches, confirmed } = await createBranchPromptPromise({
@@ -21,14 +22,12 @@ export default async () => {
         text: `Branch Lightyear - deleting multiple branches: ${branches}`,
       });
       spinner.start();
-      await branches.forEach(async (branch) => {
+      await branches.forEach(async (branch: string) => {
         const deleteScript = `git branch -D ${branch}`;
         await exec(deleteScript);
       });
 
-      spinner.succeed(
-        `Branch Lightyear - finished deleting multiple branches: ${branches}`
-      );
+      spinner.succeed(`Branch Lightyear - finished deleting multiple branches: ${branches}`);
     }
     spinner.stop();
   } catch (error) {
@@ -37,4 +36,4 @@ export default async () => {
   }
 
   return;
-};
+}
