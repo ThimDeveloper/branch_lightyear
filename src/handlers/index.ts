@@ -1,3 +1,3 @@
-import ErrorHandler from './ErrorHandler';
+import ErrorHandler from './ErrorHandler'
 
-export { ErrorHandler };
+export { ErrorHandler }
