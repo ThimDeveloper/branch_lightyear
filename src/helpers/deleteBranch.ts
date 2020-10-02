@@ -2,13 +2,13 @@ import util from 'util'
 import childProcess from 'child_process'
 const exec = util.promisify(childProcess.exec)
 import ora from 'ora'
-import createBranchPromptPromise from './createBranchPromptPromise'
+import branchPromptPromise from './branchPromptPromise'
 import { DeleteBranchError } from '../errors'
 
 export default async function (): Promise<void | Error> {
     let spinner = ora()
     try {
-        const { branch, confirmed } = await createBranchPromptPromise({
+        const { branch, confirmed } = await branchPromptPromise({
             message: 'Which branch would you like to delete?',
             shouldConfirm: true,
         })
