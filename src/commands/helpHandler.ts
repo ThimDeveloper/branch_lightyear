@@ -1,10 +1,13 @@
-import { ParsedArgs } from 'minimist'
-
+interface HelpDescriptions {
+    main: string
+    delete: string
+    pick: string
+}
 const helpDescription: Record<string, string> = {
     main: `
         bl [command] <option>
     
-        pick ........................... checkout local git branch
+        pick ........................... checkout git branch
         delete <option> ................ delete local git branch
         version ........................ show package version
         help [command] ................. show help menu
@@ -14,23 +17,18 @@ const helpDescription: Record<string, string> = {
 
         -m, --multiple ....... choose multiple branches to delete at once
         `,
+    pick: `
+        bl pick <option>
+
+        -r, --remote ....... checkout remote branch
+        `,
 }
 
-export default (argv: ParsedArgs): void => {
-    const subCommand = argv._[1] ? argv._[1] : null
+export default (command: keyof HelpDescriptions): void => {
+    const entry = command || null
 
-    try {
-        if (subCommand) {
-            // eslint-disable-next-line no-console
-            console.log(helpDescription[subCommand])
-        } else {
-            // eslint-disable-next-line no-console
-            console.log(helpDescription.main)
-        }
-    } catch (e) {
-        // eslint-disable-next-line no-console
-        console.error(e)
-    }
+    // eslint-disable-next-line no-console
+    console.log(helpDescription[entry])
 
     return
 }

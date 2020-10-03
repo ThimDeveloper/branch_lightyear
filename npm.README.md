@@ -53,14 +53,10 @@ npm install -g @thimlohsedev/branch_lightyear
 bl [command] <option>
 ```
 
-| Command          | Description                                |
-| ---------------- | ------------------------------------------ |
-| `pick`           | checkout local git branch from select list |
-| `delete`         | delete local git branch from select list   |
-| `version`        | show package version                       |
-| `help`           | show help menu                             |
-| `help [command]` | show help menu for specific command        |
-
-## Check out the code on Github
-
-[Link to repo](https://github.com/ThimDeveloper/branch_lightyear.git)
+| Command               | Description                          |
+| --------------------- | ------------------------------------ |
+| `pick`                | checkout git branch from select list |
+| `delete`              | delete git branch from select list   |
+| `version`             | show package version                 |
+| `-h --help`           | show help menu                       |
+| `[command] -h --help` | show help menu for specific command  |

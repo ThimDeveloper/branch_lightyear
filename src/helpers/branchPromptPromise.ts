@@ -11,13 +11,15 @@ interface BranchPromptParams {
     message: string
     shouldConfirm?: boolean
     multipleChoice?: boolean
+    fetchRemote?: boolean
 }
 export default async function ({
     message,
     shouldConfirm = false,
     multipleChoice = false,
+    fetchRemote = false,
 }: BranchPromptParams): Promise<Answers> {
-    const branchList = await getBranchList()
+    const branchList = await getBranchList({ fetchRemote })
 
     let questions: Question[] = []
 
