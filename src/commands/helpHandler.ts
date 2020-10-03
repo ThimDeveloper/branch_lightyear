@@ -1,5 +1,8 @@
-import { ParsedArgs } from 'minimist'
-
+interface HelpDescriptions {
+    main: string
+    delete: string
+    pick: string
+}
 const helpDescription: Record<string, string> = {
     main: `
         bl [command] <option>
@@ -21,21 +24,11 @@ const helpDescription: Record<string, string> = {
         `,
 }
 
-export default (argv: ParsedArgs): void => {
-    const subCommand = argv._[1] ? argv._[1] : null
+export default (command: keyof HelpDescriptions): void => {
+    const entry = command || null
 
-    try {
-        if (subCommand) {
-            // eslint-disable-next-line no-console
-            console.log(helpDescription[subCommand])
-        } else {
-            // eslint-disable-next-line no-console
-            console.log(helpDescription.main)
-        }
-    } catch (e) {
-        // eslint-disable-next-line no-console
-        console.error(e)
-    }
+    // eslint-disable-next-line no-console
+    console.log(helpDescription[entry])
 
     return
 }

@@ -20,7 +20,7 @@ interface FilterNewBranchesParams {
 
 /* Git scripts */
 const gitListLocalBranchesScript = `git branch`
-const gitListRemoteBranchesScript = `git fetch origin/master && git branch -r`
+const gitListRemoteBranchesScript = `git branch -r`
 
 /* Util functions */
 const filterNewOnRemote = (parameters: FilterNewBranchesParams) => {
@@ -42,6 +42,9 @@ const formatBranchesString = (options: FormatBranchesStringOptions) => {
         return localBranches
     }
     if (remoteBranchesString) {
+        const localBranches = localBranchesString
+            .split('\n')
+            .map((branch) => branch.trim())
         const remoteBranches = remoteBranchesString
             .split('\n')
             .filter((branch) => !branch.includes('HEAD'))
