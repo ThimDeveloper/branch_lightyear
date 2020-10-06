@@ -57,6 +57,6 @@ bl [command] <option>
 | --------------------- | ------------------------------------ |
 | `pick`                | checkout git branch from select list |
 | `delete`              | delete git branch from select list   |
-| `version`             | show package version                 |
+| `-v --version`        | show package version                 |
 | `-h --help`           | show help menu                       |
 | `[command] -h --help` | show help menu for specific command  |
