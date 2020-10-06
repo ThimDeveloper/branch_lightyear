@@ -5,6 +5,9 @@ import inquirer, {
     ListQuestion,
     ConfirmQuestion,
 } from 'inquirer'
+import inquirerAutoComplete from 'inquirer-autocomplete-prompt'
+inquirer.registerPrompt('autocomplete', inquirerAutoComplete)
+import { searchList } from './autoCompleteUtils'
 import getBranchList from './getBranchList'
 
 interface BranchPromptParams {
@@ -12,12 +15,14 @@ interface BranchPromptParams {
     shouldConfirm?: boolean
     multipleChoice?: boolean
     fetchRemote?: boolean
+    withSearch?: boolean
 }
 export default async function ({
     message,
     shouldConfirm = false,
     multipleChoice = false,
     fetchRemote = false,
+    withSearch = false,
 }: BranchPromptParams): Promise<Answers> {
     const branchList = await getBranchList({ fetchRemote })
 
@@ -34,15 +39,26 @@ export default async function ({
             } as CheckboxQuestion,
         ]
     } else {
-        questions = [
-            {
-                message: `${message}`,
-                type: 'list',
-                name: 'branch',
-                choices: branchList,
-                pageSize: 30,
-            } as ListQuestion,
-        ]
+        if (withSearch) {
+            questions = [
+                ({
+                    message: `${message}`,
+                    type: 'autocomplete',
+                    name: 'branch',
+                    source: searchList(branchList as unknown[]),
+                } as unknown) as Question<Answers>,
+            ]
+        } else {
+            questions = [
+                {
+                    message: `${message}`,
+                    type: 'list',
+                    name: 'branch',
+                    choices: branchList,
+                    pageSize: 30,
+                } as ListQuestion,
+            ]
+        }
     }
 
     if (shouldConfirm) {

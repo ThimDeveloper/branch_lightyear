@@ -10,6 +10,7 @@ export default async function (): Promise<void | Error> {
     try {
         const { branch } = await branchPromptPromise({
             message: 'Which (local) branch would you like to check out?',
+            withSearch: true,
         })
 
         if (branch) {
