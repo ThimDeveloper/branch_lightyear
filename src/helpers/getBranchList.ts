@@ -20,7 +20,7 @@ interface FilterNewBranchesParams {
 
 /* Git scripts */
 const gitListLocalBranchesScript = `git branch`
-const gitListRemoteBranchesScript = `git fetch && git branch -r`
+const gitListRemoteBranchesScript = `git fetch --prune && git branch -r`
 
 /* Util functions */
 const filterNewOnRemote = (parameters: FilterNewBranchesParams) => {
