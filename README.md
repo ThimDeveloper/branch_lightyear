@@ -41,23 +41,10 @@ Buzz Lightyear by Joan Stark
 
 ## Quick Start
 
-### Download the repo
+### Install the cli globally
 
 ```bash
-git clone https://github.com/ThimDeveloper/branch_lightyear.git
-```
-
-### Install the CLI locally (using symlink)
-
-```bash
-cd branch_lightyear
-npm run local
-```
-
-Remember to unlink the package to not keep unnecessary symlinks when you're done
-
-```bash
-npm unlink
+npm install -g @thimlohsedev/branch_lightyear
 ```
 
 ## Command Summary
@@ -78,16 +65,16 @@ bl [command] <option>
 
 ### Pick local branch with fuzzy search
 
-![pick-local](https://github.com/ThimDeveloper/branch_lightyear/blob/aa85029884c31d002ee64e6568812129a18e66a9/gifs/pick_local_branch_with_fuzzy_search_demo.gif)
+![pick-local](https://github.com/ThimDeveloper/branch_lightyear/blob/aa85029884c31d002ee64e6568812129a18e66a9/gifs/pick_local_branch_with_fuzzy_search_demo.gif?raw=true)
 
 ### Pick remote branch with fuzzy search
 
-![pick-remote](https://github.com/ThimDeveloper/branch_lightyear/blob/aa85029884c31d002ee64e6568812129a18e66a9/gifs/pick_remote_branch_with_fuzzy_search_demo.gif)
+![pick-remote](https://github.com/ThimDeveloper/branch_lightyear/blob/aa85029884c31d002ee64e6568812129a18e66a9/gifs/pick_remote_branch_with_fuzzy_search_demo.gif?raw=true)
 
 ### Delete single local branch with fuzzy search
 
-![delete-single](https://github.com/ThimDeveloper/branch_lightyear/blob/7ba9bbc7b1bd3fcf25b935ee914ba351fd6648ed/gifs/delete_local_branch_with_fuzzy_search_demo.gif)
+![delete-single](https://github.com/ThimDeveloper/branch_lightyear/blob/7ba9bbc7b1bd3fcf25b935ee914ba351fd6648ed/gifs/delete_local_branch_with_fuzzy_search_demo.gif?raw=true)
 
 ### Delete multiple local branches with checkboxes
 
-![delete-multiple](https://github.com/ThimDeveloper/branch_lightyear/blob/aa85029884c31d002ee64e6568812129a18e66a9/gifs/delete_multiple_local_branches_demo.json.gif)
+![delete-multiple](https://github.com/ThimDeveloper/branch_lightyear/blob/aa85029884c31d002ee64e6568812129a18e66a9/gifs/delete_multiple_local_branches_demo.json.gif?raw=true)
