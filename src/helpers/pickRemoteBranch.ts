@@ -11,6 +11,7 @@ export default async function (): Promise<void | Error> {
         const { branch } = await branchPromptPromise({
             message: 'Which (remote) branch would you like to check out?',
             fetchRemote: true,
+            withSearch: true,
         })
 
         if (branch) {

@@ -11,6 +11,7 @@ export default async function (): Promise<void | Error> {
         const { branch, confirmed } = await branchPromptPromise({
             message: 'Which branch would you like to delete?',
             shouldConfirm: true,
+            withSearch: true,
         })
 
         if (!confirmed) return

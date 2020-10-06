@@ -20,7 +20,7 @@ const helpDescription: Record<string, string> = {
     pick: `
         bl pick <option>
 
-        -r, --remote ....... checkout remote branch
+        -r, --remote ....... checkout remote branch with fuzzy search functionality
         `,
 }
 
