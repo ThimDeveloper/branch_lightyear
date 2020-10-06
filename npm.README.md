@@ -62,3 +62,19 @@ bl [command] <option>
 | `[command] -h --help` | show help menu for specific command  |
 
 ## Demo
+
+### Pick local branch with fuzzy search
+
+![pick-local](https://github.com/ThimDeveloper/branch_lightyear/blob/aa85029884c31d002ee64e6568812129a18e66a9/gifs/pick_local_branch_with_fuzzy_search_demo.gif)
+
+### Pick remote branch with fuzzy search
+
+![pick-remote](https://github.com/ThimDeveloper/branch_lightyear/blob/aa85029884c31d002ee64e6568812129a18e66a9/gifs/pick_remote_branch_with_fuzzy_search_demo.gif)
+
+### Delete single local branch with fuzzy search
+
+![delete-single](https://github.com/ThimDeveloper/branch_lightyear/blob/7ba9bbc7b1bd3fcf25b935ee914ba351fd6648ed/gifs/delete_local_branch_with_fuzzy_search_demo.gif)
+
+### Delete multiple local branches with checkboxes
+
+![delete-multiple](https://github.com/ThimDeveloper/branch_lightyear/blob/aa85029884c31d002ee64e6568812129a18e66a9/gifs/delete_multiple_local_branches_demo.json.gif)
