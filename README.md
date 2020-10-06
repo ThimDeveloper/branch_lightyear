@@ -75,3 +75,5 @@ bl [command] <option>
 | `[command] -h --help` | show help menu for specific command  |
 
 ## Demo
+
+![alt-text](https://github.com/ThimDeveloper/branch_lightyear/blob/aa85029884c31d002ee64e6568812129a18e66a9/gifs/pick_local_branch_with_fuzzy_search_demo.gif)
