@@ -41,23 +41,10 @@ Buzz Lightyear by Joan Stark
 
 ## Quick Start
 
-### Download the repo
+### Install the cli globally
 
 ```bash
-git clone https://github.com/ThimDeveloper/branch_lightyear.git
-```
-
-### Install the CLI locally (using symlink)
-
-```bash
-cd branch_lightyear
-npm run local
-```
-
-Remember to unlink the package to not keep unnecessary symlinks when you're done
-
-```bash
-npm unlink
+npm install -g @thimlohsedev/branch_lightyear
 ```
 
 ## Command Summary
