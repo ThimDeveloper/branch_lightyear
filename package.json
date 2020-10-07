@@ -1,6 +1,6 @@
 {
     "name": "@thimlohsedev/branch_lightyear",
-    "version": "1.7.3",
+    "version": "1.7.4",
     "description": "The comfort of Git in an IDE right in the terminal",
     "bin": {
         "@thimlohsedev/bl": "bin/branch_lightyear",
