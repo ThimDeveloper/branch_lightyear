@@ -19,7 +19,7 @@
     },
     "scripts": {
         "prepare": "npm run build",
-        "prepublishOnly": "npm run lint && run-s build use:npmReadme",
+        "prepublishOnly": "run-s lint use:npmReadme",
         "postpublish": "npm run use:gitReadme",
         "preversion": "npm run lint",
         "postversion": "git push && git push --tags",
@@ -42,6 +42,7 @@
         "precommit-msg:start",
         "ts:check:types",
         "lint",
+        "format",
         "precommit-msg:end"
     ],
     "keywords": [
