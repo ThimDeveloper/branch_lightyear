@@ -81,11 +81,14 @@ export default async function (
 
     const isBranchListEmptyOrNull = anyPass([isNil, isEmpty])(branchList)
     if (isBranchListEmptyOrNull) {
-
         if (options?.fetchRemote) {
-            throw new NoBranchError('No other active (remote) branches that do not already have a local copy.')
+            throw new NoBranchError(
+                'No other active (remote) branches that do not already have a local copy.'
+            )
         }
-        throw new NoBranchError('No other active (local) branches found. Try and create a new branch.')
+        throw new NoBranchError(
+            'No other active (local) branches found. Try and create a new branch.'
+        )
     }
     return branchList
 }
