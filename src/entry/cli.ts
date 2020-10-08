@@ -1,17 +1,18 @@
 import minimist from 'minimist'
 import chalk from 'chalk'
-import commands from '../commands'
+import commands, { AvailableCommands } from '../commands'
 import { ErrorHandler } from '../handlers'
 
 const parseArgs = (rawArgs: string[]) =>
     minimist(rawArgs.slice(2), {
-        string: ['pick', 'delete'],
-        boolean: ['version', 'help', 'multiple', 'remote'],
+        string: ['pick', 'delete', 'create'],
+        boolean: ['version', 'help', 'multiple', 'remote', 'upstream'],
         alias: {
             v: 'version',
             h: 'help',
             m: 'multiple',
             r: 'remote',
+            u: 'upstream',
         },
     })
 
@@ -21,12 +22,16 @@ export async function cli(rawArgs: string[]): Promise<void> {
         const arg0 = argv._[0]
 
         switch (arg0) {
-            case 'pick': {
+            case AvailableCommands.PICK: {
                 await commands.pick(argv)
                 break
             }
-            case 'delete': {
+            case AvailableCommands.DELETE: {
                 await commands.delete(argv)
+                break
+            }
+            case AvailableCommands.CREATE: {
+                await commands.create(argv)
                 break
             }
             default:

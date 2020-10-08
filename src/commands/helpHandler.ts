@@ -2,6 +2,7 @@ interface HelpDescriptions {
     main: string
     delete: string
     pick: string
+    create: string
 }
 const helpDescription: Record<string, string> = {
     main: `
@@ -9,6 +10,7 @@ const helpDescription: Record<string, string> = {
     
         pick ........................... checkout git branch
         delete <option> ................ delete local git branch
+        create <option> ................ create new git branch
         version ........................ show package version
         help [command] ................. show help menu
         `,
@@ -22,6 +24,11 @@ const helpDescription: Record<string, string> = {
 
         -r, --remote ....... checkout remote branch with fuzzy search functionality
         `,
+    create: `
+        bl create <option>
+
+        -u --upstream ...... create new local and remote branch from master and set upstream tracking
+    `,
 }
 
 export default (command: keyof HelpDescriptions): void => {
