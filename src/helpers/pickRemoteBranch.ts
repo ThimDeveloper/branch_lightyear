@@ -9,14 +9,14 @@ export default async function (): Promise<void | Error> {
     let spinner = ora()
     try {
         const { branch } = await branchListPromptPromise({
-            message: 'Which (remote) branch would you like to check out?',
+            message: 'Which new (remote) branch would you like to check out?',
             fetchRemote: true,
             withSearch: true,
         })
 
         if (branch) {
             spinner = ora(
-                `Branch Lightyear - checking out (remote) branch: ${branch}`
+                `Branch Lightyear - checking out new (remote) branch: ${branch}`
             )
             spinner.start()
             const checkoutScript = `git checkout ${branch}`
