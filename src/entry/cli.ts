@@ -3,7 +3,6 @@ import chalk from 'chalk'
 import commands, { AvailableCommands } from '../commands'
 import { ErrorHandler } from '../handlers'
 
-
 const parseArgs = (rawArgs: string[]) =>
     minimist(rawArgs.slice(2), {
         string: ['pick', 'delete', 'create'],
@@ -13,7 +12,7 @@ const parseArgs = (rawArgs: string[]) =>
             h: 'help',
             m: 'multiple',
             r: 'remote',
-            u: 'upstream'
+            u: 'upstream',
         },
     })
 

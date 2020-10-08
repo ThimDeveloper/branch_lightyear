@@ -9,7 +9,7 @@ export enum AvailableCommands {
     PICK = 'pick',
     CREATE = 'create',
     DELETE = 'delete',
-    VERSION = 'version'
+    VERSION = 'version',
 }
 const commands = {
     [AvailableCommands.HELP]: helpHandler,

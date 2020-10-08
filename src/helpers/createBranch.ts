@@ -11,10 +11,10 @@ interface CreateBranchParams {
 }
 
 /* Git scripts */
-const gitCreateNewBranchWithName = (branchName: string) => `git branch -b ${branchName}`
-const gitCreateNewBranchWithNameAndUpstream = (branchName: string) => `git branch -b ${branchName} && git push -u origin ${branchName}`
-
-
+const gitCreateNewBranchWithName = (branchName: string) =>
+    `git branch -b ${branchName}`
+const gitCreateNewBranchWithNameAndUpstream = (branchName: string) =>
+    `git branch -b ${branchName} && git push -u origin ${branchName}`
 
 export default async function (
     options: CreateBranchParams
@@ -23,19 +23,25 @@ export default async function (
 
     let spinner = ora()
     try {
-        const { branchName } = await branchPromptPromise({ message: 'What name would you like your new branch to have?', shouldConfirm: true })
+        const { branchName } = await branchPromptPromise({
+            message: 'What name would you like your new branch to have?',
+            shouldConfirm: true,
+        })
         spinner = ora(`Branch Lightyear - creating branch: ${branchName}`)
         spinner.start()
 
         if (setUpstream) {
-            const { stderr } = await exec(gitCreateNewBranchWithNameAndUpstream(branchName))
+            const { stderr } = await exec(
+                gitCreateNewBranchWithNameAndUpstream(branchName)
+            )
             spinner.succeed(stderr)
         } else {
-            const { stderr } = await exec(gitCreateNewBranchWithName(branchName))
+            const { stderr } = await exec(
+                gitCreateNewBranchWithName(branchName)
+            )
             spinner.succeed(stderr)
         }
-    }
-    catch (error) {
+    } catch (error) {
         spinner.fail(`Branch Lightyear - error while creating branch`)
         throw new CreateBranchError(error.message)
     }

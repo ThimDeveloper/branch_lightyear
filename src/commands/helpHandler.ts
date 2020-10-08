@@ -28,7 +28,7 @@ const helpDescription: Record<string, string> = {
         bl create <option>
 
         -u --upstream ...... create new local and remote branch and set upstream tracking
-    `
+    `,
 }
 
 export default (command: keyof HelpDescriptions): void => {

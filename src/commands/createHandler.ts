@@ -10,6 +10,4 @@ export default async (argv: ParsedArgs): Promise<void | Error> => {
         return await createBranch({ setUpstream: false })
     }
     return await createBranch({ setUpstream: true })
-
-
 }
