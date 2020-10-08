@@ -23,6 +23,7 @@ const helpDescription: Record<string, string> = {
         bl pick <option>
 
         -r, --remote ....... checkout remote branch with fuzzy search functionality
+        -c --cache ......... pick from cached list of branches (remote only)
         `,
     create: `
         bl create <option>

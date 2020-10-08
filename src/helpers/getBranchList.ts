@@ -1,5 +1,6 @@
 import util from 'util'
 import { anyPass, isNil, isEmpty } from 'ramda'
+import Cache from '../cache'
 import { NoBranchError } from '../errors'
 import childProcess from 'child_process'
 const exec = util.promisify(childProcess.exec)
@@ -11,6 +12,7 @@ interface FormatBranchesStringOptions {
 }
 interface GetBranchListParams {
     fetchRemote?: boolean
+    fromCache?: boolean
 }
 
 interface FilterNewBranchesParams {
@@ -23,6 +25,9 @@ const gitListLocalBranchesScript = `git branch`
 const gitListRemoteBranchesScript = `git fetch --prune && git branch -r`
 
 /* Util functions */
+
+const shouldFetchFromCache = (cacheInstance: ReturnType<typeof Cache.getInstance>, fromCache?: boolean): boolean => cacheInstance.getStats().keys !== 0 && !!fromCache
+
 const filterNewOnRemote = (parameters: FilterNewBranchesParams) => {
     const remote = new Set(parameters.remoteBranches)
     const local = new Set(parameters.localBranches)
@@ -66,13 +71,21 @@ export default async function (
     )?.stdout.trim()
 
     if (options?.fetchRemote) {
-        remoteBranches = (
-            await exec(gitListRemoteBranchesScript)
-        )?.stdout.trim()
-        branchList = formatBranchesString({
-            localBranchesString: localBranches,
-            remoteBranchesString: remoteBranches,
-        })
+
+        if (shouldFetchFromCache(Cache.getInstance(), options?.fromCache)) {
+            branchList = Cache.getRemoteBranchesFromCache()
+        } else {
+            remoteBranches = (
+                await exec(gitListRemoteBranchesScript)
+            )?.stdout.trim()
+            branchList = formatBranchesString({
+                localBranchesString: localBranches,
+                remoteBranchesString: remoteBranches,
+            })
+            Cache.storeMultiple(branchList)
+        }
+
+
     } else {
         branchList = formatBranchesString({
             localBranchesString: localBranches,

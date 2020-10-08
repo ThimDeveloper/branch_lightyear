@@ -4,14 +4,19 @@ import branchListPromptPromise from './branchListPromptPromise'
 import { PickBranchError } from '../errors'
 import childProcess from 'child_process'
 const exec = util.promisify(childProcess.exec)
-
-export default async function (): Promise<void | Error> {
+/* Interfaces */
+interface PickRemoteBranchOptions {
+    fromCache?: boolean
+}
+export default async function (options: PickRemoteBranchOptions): Promise<void | Error> {
     let spinner = ora()
     try {
         const { branch } = await branchListPromptPromise({
             message: 'Which new (remote) branch would you like to check out?',
             fetchRemote: true,
             withSearch: true,
+            fromCache: options.fromCache
+
         })
 
         if (branch) {
