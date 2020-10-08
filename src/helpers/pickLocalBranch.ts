@@ -15,7 +15,7 @@ export default async function (): Promise<void | Error> {
 
         if (branch) {
             spinner = ora(
-                `Branch Lightyear - checking out (local) branch: ${branch}`
+                `Branch Lightyear - checking out (local) branch: [${branch}]`
             )
             spinner.start()
             const checkoutScript = `git checkout ${branch}`

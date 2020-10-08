@@ -9,14 +9,14 @@ export default async function (): Promise<void | Error> {
     let spinner = ora()
     try {
         const { branch, confirmed } = await branchListPromptPromise({
-            message: 'Which branch would you like to delete?',
+            message: 'Which (local) branch would you like to delete?',
             shouldConfirm: true,
             withSearch: true,
         })
 
         if (!confirmed) return
         if (branch) {
-            spinner = ora(`Branch Lightyear - deleting branch: ${branch}`)
+            spinner = ora(`Branch Lightyear - deleting branch: [${branch}]`)
             spinner.start()
             const deleteScript = `git branch -D ${branch}`
             const { stderr } = await exec(deleteScript)

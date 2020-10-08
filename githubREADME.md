@@ -41,13 +41,21 @@ Buzz Lightyear by Joan Stark
 
 ## Quick Start
 
+### Try the latest release from npm
+
+```bash
+npm install -g @thimlohsedev/branch_lightyear@latest
+```
+
+## OR
+
 ### Download the repo
 
 ```bash
 git clone https://github.com/ThimDeveloper/branch_lightyear.git
 ```
 
-### Install the CLI locally (using symlink)
+### Install the CLI locally for development (using symlink)
 
 ```bash
 cd branch_lightyear
@@ -60,9 +68,16 @@ Remember to unlink the package to not keep unnecessary symlinks when you're done
 npm unlink
 ```
 
+## Command Summary
+
+```bash
+bl [command] <option>
+```
+
 | Command               | Description                          |
 | --------------------- | ------------------------------------ |
 | `pick`                | checkout git branch from select list |
+| `create`              | create new git branch                |
 | `delete`              | delete git branch from select list   |
 | `-v --version`        | show package version                 |
 | `-h --help`           | show help menu                       |

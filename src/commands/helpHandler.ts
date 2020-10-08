@@ -27,7 +27,7 @@ const helpDescription: Record<string, string> = {
     create: `
         bl create <option>
 
-        -u --upstream ...... create new local and remote branch and set upstream tracking
+        -u --upstream ...... create new local and remote branch from master and set upstream tracking
     `,
 }
 

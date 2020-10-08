@@ -29,7 +29,7 @@ export default async function (
             shouldConfirm: true,
         })
         spinner = ora(
-            `Branch Lightyear - creating new branch with name: ${branchName} from master`
+            `Branch Lightyear - creating new branch with name: [${branchName}] from master`
         )
         spinner.start()
 

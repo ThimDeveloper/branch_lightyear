@@ -17,7 +17,7 @@ export default async function (): Promise<void | Error> {
         if (!confirmed) return
         if (branches) {
             spinner = ora(
-                `Branch Lightyear - deleting multiple branches: ${branches}`
+                `Branch Lightyear - deleting multiple branches: [${branches}]`
             )
             spinner.start()
             await branches.forEach(async (branch: string) => {
@@ -26,7 +26,7 @@ export default async function (): Promise<void | Error> {
             })
 
             spinner.succeed(
-                `Branch Lightyear - finished deleting multiple branches: ${branches}`
+                `Branch Lightyear - finished deleting multiple branches: [${branches}]`
             )
         }
         spinner.stop()
