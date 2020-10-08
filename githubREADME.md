@@ -103,8 +103,8 @@ bl [command] <option>
 
 ### Create local branch from master
 
-![create-local](?raw=true)
+![create-local](https://github.com/ThimDeveloper/branch_lightyear/blob/c40e9ab75ba13d5cb2b474aea5b10af451e53028/gifs/create_local_branch_demo.gif?raw=true)
 
 ### Create local branch from master and automatically setup upstream tracking on remote
 
-![create-remote](?raw=true)
+![create-remote](https://github.com/ThimDeveloper/branch_lightyear/blob/c40e9ab75ba13d5cb2b474aea5b10af451e53028/gifs/create_local_branch_and_set_upstream_demo.gif?raw=true)
