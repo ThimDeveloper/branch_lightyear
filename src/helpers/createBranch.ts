@@ -8,13 +8,14 @@ const exec = util.promisify(childProcess.exec)
 /* Interfaces */
 interface CreateBranchParams {
     setUpstream?: boolean
+    fromMaster?: boolean
 }
 
 /* Git scripts */
-const gitCreateNewBranchWithName = (branchName: string) =>
-    `git branch ${branchName} master`
-const gitCreateNewBranchWithNameAndUpstream = (branchName: string) =>
-    `git branch ${branchName} master && git push -u ${branchName}`
+const gitCreateNewBranchWithName = (branchName: string, fromMaster?: boolean) =>
+    `git branch ${branchName} ${fromMaster ? 'master' : ''}`.trim()
+const gitCreateNewBranchWithNameAndUpstream = (branchName: string, fromMaster?: boolean) =>
+    `git branch ${branchName} ${fromMaster ? 'master' : ''}`.trim() + `git push -u origin ${branchName}`.trim()
 
 export default async function (
     options: CreateBranchParams
@@ -27,7 +28,7 @@ export default async function (
             message: 'What name would you like your new branch to have?',
             shouldConfirm: true,
         })
-        spinner = ora(`Branch Lightyear - creating branch: ${branchName}`)
+        spinner = ora(`Branch Lightyear - creating branch: ${branchName} `)
         spinner.start()
 
         if (setUpstream) {
