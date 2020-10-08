@@ -1,2 +1,2 @@
-declare module 'inquirer-autocomplete-prompt';
-declare module 'mirrorkey';
+declare module 'inquirer-autocomplete-prompt'
+declare module 'mirrorkey'

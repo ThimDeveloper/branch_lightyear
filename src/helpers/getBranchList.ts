@@ -26,7 +26,10 @@ const gitListRemoteBranchesScript = `git fetch --prune && git branch -r`
 
 /* Util functions */
 
-const shouldFetchFromCache = (cacheInstance: ReturnType<typeof Cache.getInstance>, fromCache?: boolean): boolean => cacheInstance.getStats().keys !== 0 && !!fromCache
+const shouldFetchFromCache = (
+    cacheInstance: ReturnType<typeof Cache.getInstance>,
+    fromCache?: boolean
+): boolean => cacheInstance.getStats().keys !== 0 && !!fromCache
 
 const filterNewOnRemote = (parameters: FilterNewBranchesParams) => {
     const remote = new Set(parameters.remoteBranches)
@@ -71,7 +74,6 @@ export default async function (
     )?.stdout.trim()
 
     if (options?.fetchRemote) {
-
         if (shouldFetchFromCache(Cache.getInstance(), options?.fromCache)) {
             branchList = Cache.getRemoteBranchesFromCache()
         } else {
@@ -84,8 +86,6 @@ export default async function (
             })
             Cache.storeMultiple(branchList)
         }
-
-
     } else {
         branchList = formatBranchesString({
             localBranchesString: localBranches,

@@ -1,12 +1,14 @@
 import NodeCache from 'node-cache'
 import mirrorKey from 'mirrorkey'
-import { } from 'ramda'
+import {} from 'ramda'
 
 export default class Cache {
-    private static instance: NodeCache;
+    private static instance: NodeCache
     private static cacheOptions: NodeCache.Options = { stdTTL: 60 * 5 }
 
-    private constructor() { return }
+    private constructor() {
+        return
+    }
 
     /**
      * The static method that controls the access to the singleton instance.
@@ -16,15 +18,17 @@ export default class Cache {
      */
     public static getInstance(): NodeCache {
         if (!Cache.instance) {
-            Cache.instance = new NodeCache(this.cacheOptions);
+            Cache.instance = new NodeCache(this.cacheOptions)
         }
-        return Cache.instance;
+        return Cache.instance
     }
-
 
     public static storeMultiple(array: string[] | undefined): boolean {
         if (!array) return false
-        const multiSet = Object.entries(mirrorKey(array)).map(entry => ({ key: entry[0], val: entry[1] }))
+        const multiSet = Object.entries(mirrorKey(array)).map((entry) => ({
+            key: entry[0],
+            val: entry[1],
+        }))
         const instance = Cache.getInstance()
         return instance.mset(multiSet)
     }
@@ -32,6 +36,5 @@ export default class Cache {
     public static getRemoteBranchesFromCache(): string[] {
         const instance = Cache.getInstance()
         return instance.keys()
-
     }
 }

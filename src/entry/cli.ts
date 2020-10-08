@@ -13,7 +13,7 @@ const parseArgs = (rawArgs: string[]) =>
             m: 'multiple',
             r: 'remote',
             u: 'upstream',
-            c: 'cache'
+            c: 'cache',
         },
     })
 
