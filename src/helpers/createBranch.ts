@@ -14,13 +14,15 @@ interface CreateBranchParams {
 /* Git scripts */
 const gitCreateNewBranchWithName = (branchName: string, fromMaster?: boolean) =>
     `git branch ${branchName} ${fromMaster ? 'master' : ''}`.trim()
-const gitCreateNewBranchWithNameAndUpstream = (branchName: string, fromMaster?: boolean) =>
-    `git branch ${branchName} ${fromMaster ? 'master' : ''}`.trim() + `git push -u origin ${branchName}`.trim()
+const gitPushBranchAndSetUpstream = (
+    branchName: string,
+) =>
+    `git push -u origin ${branchName}`.trim()
 
 export default async function (
     options: CreateBranchParams
 ): Promise<void | Error> {
-    const { setUpstream } = options
+    const { setUpstream, fromMaster } = options
 
     let spinner = ora()
     try {
@@ -28,17 +30,20 @@ export default async function (
             message: 'What name would you like your new branch to have?',
             shouldConfirm: true,
         })
-        spinner = ora(`Branch Lightyear - creating branch: ${branchName} `)
+        spinner = ora(`Branch Lightyear - creating new branch with name: ${branchName} from master`)
         spinner.start()
 
         if (setUpstream) {
-            const { stderr } = await exec(
-                gitCreateNewBranchWithNameAndUpstream(branchName)
+            let output = await exec(
+                gitCreateNewBranchWithName(branchName, fromMaster)
             )
-            spinner.succeed(stderr)
+            output = await exec(
+                gitPushBranchAndSetUpstream(branchName)
+            )
+            spinner.succeed(output.stderr)
         } else {
             const { stderr } = await exec(
-                gitCreateNewBranchWithName(branchName)
+                gitCreateNewBranchWithName(branchName, fromMaster)
             )
             spinner.succeed(stderr)
         }

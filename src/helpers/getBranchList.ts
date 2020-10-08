@@ -44,6 +44,7 @@ const formatBranchesString = (options: FormatBranchesStringOptions) => {
     if (remoteBranchesString) {
         const localBranches = localBranchesString
             .split('\n')
+            .map((branch) => branch.replace('*', ''))
             .map((branch) => branch.trim())
         const remoteBranches = remoteBranchesString
             .split('\n')
@@ -80,7 +81,11 @@ export default async function (
 
     const isBranchListEmptyOrNull = anyPass([isNil, isEmpty])(branchList)
     if (isBranchListEmptyOrNull) {
-        throw new NoBranchError('No other active branches found.')
+
+        if (options?.fetchRemote) {
+            throw new NoBranchError('No other active (remote) branches that do not already have a local copy.')
+        }
+        throw new NoBranchError('No other active (local) branches found. Try and create a new branch.')
     }
     return branchList
 }
