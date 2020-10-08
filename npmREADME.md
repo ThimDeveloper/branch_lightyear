@@ -79,3 +79,11 @@ bl [command] <option>
 ### Delete multiple local branches with checkboxes
 
 ![delete-multiple](https://github.com/ThimDeveloper/branch_lightyear/blob/aa85029884c31d002ee64e6568812129a18e66a9/gifs/delete_multiple_local_branches_demo.json.gif?raw=true)
+
+### Create local branch from master
+
+![create-local](?raw=true)
+
+### Create local branch from master and automatically setup upstream tracking on remote
+
+![create-remote](?raw=true)
