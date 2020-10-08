@@ -1,65 +1,36 @@
 import inquirer, {
     Answers,
     Question,
-    CheckboxQuestion,
-    ListQuestion,
-    ConfirmQuestion,
+    ConfirmQuestion
 } from 'inquirer'
-import inquirerAutoComplete from 'inquirer-autocomplete-prompt'
-inquirer.registerPrompt('autocomplete', inquirerAutoComplete)
-import { searchList } from './autoCompleteUtils'
-import getBranchList from './getBranchList'
+import { isEmpty } from 'ramda'
 
 interface BranchPromptParams {
     message: string
     shouldConfirm?: boolean
-    multipleChoice?: boolean
-    fetchRemote?: boolean
-    withSearch?: boolean
 }
 export default async function ({
     message,
     shouldConfirm = false,
-    multipleChoice = false,
-    fetchRemote = false,
-    withSearch = false,
+
 }: BranchPromptParams): Promise<Answers> {
-    const branchList = await getBranchList({ fetchRemote })
 
     let questions: Question[] = []
+    questions = [{
+        type: 'input',
+        name: 'branchName',
+        message: `${message}`,
+        filter: (input) => {
+            return input.trim()
+        },
+        validate: (_, answers) => {
+            const name = answers?.branch
+            if (isEmpty(name)) return 'You must provide a branch name.'
+            if (!name.includes(" ")) return true
+            return 'Spaces are not allowed separator in branch names. Please use _ or - as separators'
+        },
+    } as Question]
 
-    if (multipleChoice) {
-        questions = [
-            {
-                message: `${message}`,
-                type: 'checkbox',
-                name: 'branches',
-                choices: branchList,
-                pageSize: 30,
-            } as CheckboxQuestion,
-        ]
-    } else {
-        if (withSearch) {
-            questions = [
-                ({
-                    message: `${message}`,
-                    type: 'autocomplete',
-                    name: 'branch',
-                    source: searchList(branchList as unknown[]),
-                } as unknown) as Question<Answers>,
-            ]
-        } else {
-            questions = [
-                {
-                    message: `${message}`,
-                    type: 'list',
-                    name: 'branch',
-                    choices: branchList,
-                    pageSize: 30,
-                } as ListQuestion,
-            ]
-        }
-    }
 
     if (shouldConfirm) {
         questions.push({

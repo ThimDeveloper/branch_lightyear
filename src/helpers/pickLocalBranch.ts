@@ -1,6 +1,6 @@
 import util from 'util'
 import ora from 'ora'
-import branchPromptPromise from './branchPromptPromise'
+import branchListPromptPromise from './branchListPromptPromise'
 import { PickBranchError } from '../errors'
 import childProcess from 'child_process'
 const exec = util.promisify(childProcess.exec)
@@ -8,7 +8,7 @@ const exec = util.promisify(childProcess.exec)
 export default async function (): Promise<void | Error> {
     let spinner = ora()
     try {
-        const { branch } = await branchPromptPromise({
+        const { branch } = await branchListPromptPromise({
             message: 'Which (local) branch would you like to check out?',
             withSearch: true,
         })

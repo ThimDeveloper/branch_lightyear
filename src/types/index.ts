@@ -1,1 +1,1 @@
-declare module 'inquirer-autocomplete-prompt'
+declare module 'inquirer-autocomplete-prompt';
