@@ -32,7 +32,7 @@ export async function cli(rawArgs: string[]): Promise<void> {
                 break
             }
             case AvailableCommands.CREATE: {
-                await commands.delete(argv)
+                await commands.create(argv)
                 break
             }
             default:
