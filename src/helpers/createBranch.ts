@@ -14,7 +14,7 @@ interface CreateBranchParams {
 const gitCreateNewBranchWithName = (branchName: string) =>
     `git branch ${branchName} master`
 const gitCreateNewBranchWithNameAndUpstream = (branchName: string) =>
-    `git branch -u ${branchName} master`
+    `git branch ${branchName} master && git branch -u ${branchName}`
 
 export default async function (
     options: CreateBranchParams
