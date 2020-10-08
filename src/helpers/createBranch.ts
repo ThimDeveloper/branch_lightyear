@@ -12,9 +12,9 @@ interface CreateBranchParams {
 
 /* Git scripts */
 const gitCreateNewBranchWithName = (branchName: string) =>
-    `git branch -b ${branchName}`
+    `git branch ${branchName} master`
 const gitCreateNewBranchWithNameAndUpstream = (branchName: string) =>
-    `git branch -b ${branchName} && git push -u origin ${branchName}`
+    `git branch -u ${branchName} master`
 
 export default async function (
     options: CreateBranchParams
