@@ -1,6 +1,6 @@
 import util from 'util'
 import { anyPass, isNil, isEmpty } from 'ramda'
-import Cache from '../cache'
+import configStoreApi, { ConfigStoreApi } from '../persistantLocalStore'
 import { NoBranchError } from '../errors'
 import childProcess from 'child_process'
 const exec = util.promisify(childProcess.exec)
@@ -12,7 +12,7 @@ interface FormatBranchesStringOptions {
 }
 interface GetBranchListParams {
     fetchRemote?: boolean
-    fromCache?: boolean
+    fromLocalStore?: boolean
 }
 
 interface FilterNewBranchesParams {
@@ -26,10 +26,10 @@ const gitListRemoteBranchesScript = `git fetch --prune && git branch -r`
 
 /* Util functions */
 
-const shouldFetchFromCache = (
-    cacheInstance: ReturnType<typeof Cache.getInstance>,
+const shouldFetchFromLocalStore = (
+    configStore: ConfigStoreApi,
     fromCache?: boolean
-): boolean => cacheInstance.getStats().keys !== 0 && !!fromCache
+): boolean => configStore.hasItems() && !!fromCache
 
 const filterNewOnRemote = (parameters: FilterNewBranchesParams) => {
     const remote = new Set(parameters.remoteBranches)
@@ -41,7 +41,7 @@ const filterNewOnRemote = (parameters: FilterNewBranchesParams) => {
 const formatBranchesString = (options: FormatBranchesStringOptions) => {
     const { localBranchesString, remoteBranchesString } = options
 
-    const localBranches = localBranchesString
+    let localBranches = localBranchesString
         .split('\n')
         .filter((branch) => !branch.includes('*'))
         .map((branch) => branch.trim())
@@ -49,19 +49,16 @@ const formatBranchesString = (options: FormatBranchesStringOptions) => {
     if (!remoteBranchesString) {
         return localBranches
     }
-    if (remoteBranchesString) {
-        const localBranches = localBranchesString
-            .split('\n')
-            .map((branch) => branch.replace('*', ''))
-            .map((branch) => branch.trim())
-        const remoteBranches = remoteBranchesString
-            .split('\n')
-            .filter((branch) => !branch.includes('HEAD'))
-            .map((branch) => branch.split('origin/')[1])
-        return filterNewOnRemote({ localBranches, remoteBranches })
-    }
 
-    return
+    localBranches = localBranchesString
+        .split('\n')
+        .map((branch) => branch.replace('*', ''))
+        .map((branch) => branch.trim())
+    const remoteBranches = remoteBranchesString
+        .split('\n')
+        .filter((branch) => !branch.includes('HEAD'))
+        .map((branch) => branch.split('origin/')[1])
+    return filterNewOnRemote({ localBranches, remoteBranches })
 }
 
 export default async function (
@@ -74,18 +71,18 @@ export default async function (
     )?.stdout.trim()
 
     if (options?.fetchRemote) {
-        if (shouldFetchFromCache(Cache.getInstance(), options?.fromCache)) {
-            branchList = Cache.getRemoteBranchesFromCache()
+        if (shouldFetchFromLocalStore(configStoreApi, options.fromLocalStore)) {
+            remoteBranches = configStoreApi.get('remoteBranches')
         } else {
             remoteBranches = (
                 await exec(gitListRemoteBranchesScript)
             )?.stdout.trim()
-            branchList = formatBranchesString({
-                localBranchesString: localBranches,
-                remoteBranchesString: remoteBranches,
-            })
-            Cache.storeMultiple(branchList)
+            configStoreApi.store('remoteBranches', remoteBranches)
         }
+        branchList = formatBranchesString({
+            localBranchesString: localBranches,
+            remoteBranchesString: remoteBranches,
+        })
     } else {
         branchList = formatBranchesString({
             localBranchesString: localBranches,

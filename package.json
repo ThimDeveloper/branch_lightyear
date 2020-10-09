@@ -1,7 +1,7 @@
 {
     "name": "@thimlohsedev/branch_lightyear",
     "version": "1.8.0",
-    "description": "The comfort of Git in an IDE right in the terminal",
+    "description": "The comfort of some pretty sleek Git commands right in the terminal",
     "bin": {
         "@thimlohsedev/bl": "bin/branch_lightyear",
         "bl": "bin/branch_lightyear"
@@ -58,13 +58,13 @@
     "license": "MIT",
     "dependencies": {
         "chalk": "^4.1.0",
+        "configstore": "^5.0.1",
         "esm": "^3.2.25",
         "fuzzy": "^0.1.3",
         "inquirer": "^7.3.3",
         "inquirer-autocomplete-prompt": "^1.2.0",
         "minimist": "^1.2.5",
         "mirrorkey": "^1.2.0",
-        "node-cache": "^5.1.2",
         "ora": "^5.1.0",
         "ramda": "^0.27.1",
         "tslib": "^2.0.1"
@@ -75,6 +75,7 @@
         "@types/minimist": "^1.2.0",
         "@types/node": "^14.11.2",
         "@types/ramda": "^0.27.19",
+        "@types/configstore": "^4.0.0",
         "@typescript-eslint/eslint-plugin": "^4.3.0",
         "@typescript-eslint/parser": "^4.3.0",
         "eslint": "^7.10.0",
