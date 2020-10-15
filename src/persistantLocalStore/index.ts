@@ -4,8 +4,9 @@ import ConfigStore from 'configstore'
 const { name } = require('../../package.json')
 const configStore = new ConfigStore(name)
 
+const remoteBranchesKey = 'remoteBranches'
 const createdAtKey = 'createdAt'
-const timeUntilLocalStorageIsStaleInMinutes = 15
+const timeUntilLocalStorageIsStaleInMinutes = 5
 const millisecondsPerSecond = 1000
 const secondsPerMinute = 60
 const convertToMillisecondsFromMinutesMultipler =
@@ -14,14 +15,15 @@ const timeUntilLocalStorageIsStaleInMilliseconds =
     timeUntilLocalStorageIsStaleInMinutes *
     convertToMillisecondsFromMinutesMultipler
 
-export interface ConfigStoreApi {
-    isLocalStorageStale(createdAt: number): boolean
-    hasItems(): boolean
+interface ConfigStoreApi {
+    isLocalStorageStale(): boolean
+    hasSavedRemoteBranches(): boolean
     store(key: string, input?: string): boolean
     get(key: string): string
 }
 const configStoreApi: ConfigStoreApi = {
-    isLocalStorageStale: (createdAt: number): boolean => {
+    isLocalStorageStale: (): boolean => {
+        const createdAt = configStore.get(createdAtKey) || 0
         const currentTimeInMs = Date.now()
         const approximateTimeElapsedInMillisecondsSinceCreated = Math.floor(
             currentTimeInMs - createdAt
@@ -31,7 +33,7 @@ const configStoreApi: ConfigStoreApi = {
             timeUntilLocalStorageIsStaleInMilliseconds
         )
     },
-    hasItems: (): boolean => configStore.size > 0,
+    hasSavedRemoteBranches: (): boolean => configStore.has(remoteBranchesKey),
     store: (key: string, input?: string): boolean => {
         if (!input) return false
         const preSize = configStore.size
@@ -47,4 +49,4 @@ const configStoreApi: ConfigStoreApi = {
 }
 
 export default configStoreApi
-export { createdAtKey }
+export { ConfigStoreApi, remoteBranchesKey }

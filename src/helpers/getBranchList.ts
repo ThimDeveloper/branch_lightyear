@@ -1,6 +1,9 @@
 import util from 'util'
 import { anyPass, isNil, isEmpty } from 'ramda'
-import configStoreApi, { ConfigStoreApi } from '../persistantLocalStore'
+import configStoreApi, {
+    ConfigStoreApi,
+    remoteBranchesKey,
+} from '../persistantLocalStore'
 import { NoBranchError } from '../errors'
 import childProcess from 'child_process'
 const exec = util.promisify(childProcess.exec)
@@ -30,7 +33,9 @@ const shouldFetchFromLocalStore = (
     configStore: ConfigStoreApi,
     freshFetch?: boolean
 ): boolean =>
-    !!freshFetch && configStore.hasItems() && !configStore.isLocalStorageStale
+    !freshFetch &&
+    configStore.hasSavedRemoteBranches() &&
+    !configStore.isLocalStorageStale()
 
 const filterNewOnRemote = (parameters: FilterNewBranchesParams) => {
     const remote = new Set(parameters.remoteBranches)
@@ -73,12 +78,12 @@ export default async function (
 
     if (options?.fetchRemote) {
         if (shouldFetchFromLocalStore(configStoreApi, options.freshFetch)) {
-            remoteBranches = configStoreApi.get('remoteBranches')
+            remoteBranches = configStoreApi.get(remoteBranchesKey)
         } else {
             remoteBranches = (
                 await exec(gitListRemoteBranchesScript)
             )?.stdout.trim()
-            configStoreApi.store('remoteBranches', remoteBranches)
+            configStoreApi.store(remoteBranchesKey, remoteBranches)
         }
         branchList = formatBranchesString({
             localBranchesString: localBranches,
