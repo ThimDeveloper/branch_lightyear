@@ -53,14 +53,14 @@ npm install -g @thimlohsedev/branch_lightyear
 bl [command] <option>
 ```
 
-| Command               | Description                          |
-| --------------------- | ------------------------------------ |
-| `pick`                | checkout git branch from select list |
-| `create`              | create new git branch                |
-| `delete`              | delete git branch from select list   |
-| `-v --version`        | show package version                 |
-| `-h --help`           | show help menu                       |
-| `[command] -h --help` | show help menu for specific command  |
+| Command               | Description                                            |
+| --------------------- | ------------------------------------------------------ |
+| `pick`                | checkout git branch from select list with fuzzy search |
+| `create`              | create new git branch                                  |
+| `delete`              | delete git branch from select list with fuzzy search   |
+| `-v --version`        | show package version                                   |
+| `-h --help`           | show help menu                                         |
+| `[command] -h --help` | show help menu for specific command                    |
 
 ## Demo
 
