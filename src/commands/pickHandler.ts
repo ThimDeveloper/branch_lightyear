@@ -10,5 +10,5 @@ export default async (argv: ParsedArgs): Promise<void | Error> => {
     if (!argv.r) {
         return await pickLocalBranch()
     }
-    return await pickRemoteBranch()
+    return await pickRemoteBranch({ freshFetch: !!argv.f })
 }
