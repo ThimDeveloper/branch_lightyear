@@ -6,14 +6,14 @@ import { ErrorHandler } from '../handlers'
 const parseArgs = (rawArgs: string[]) =>
     minimist(rawArgs.slice(2), {
         string: ['pick', 'delete', 'create'],
-        boolean: ['version', 'help', 'multiple', 'remote', 'upstream', 'cache'],
+        boolean: ['version', 'help', 'multiple', 'remote', 'upstream', 'fresh'],
         alias: {
             v: 'version',
             h: 'help',
             m: 'multiple',
             r: 'remote',
             u: 'upstream',
-            c: 'cache',
+            f: 'fresh',
         },
     })
 

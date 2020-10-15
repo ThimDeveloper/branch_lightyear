@@ -12,7 +12,7 @@ interface FormatBranchesStringOptions {
 }
 interface GetBranchListParams {
     fetchRemote?: boolean
-    fromLocalStore?: boolean
+    freshFetch?: boolean
 }
 
 interface FilterNewBranchesParams {
@@ -28,8 +28,9 @@ const gitListRemoteBranchesScript = `git fetch --prune && git branch -r`
 
 const shouldFetchFromLocalStore = (
     configStore: ConfigStoreApi,
-    fromCache?: boolean
-): boolean => configStore.hasItems() && !!fromCache
+    freshFetch?: boolean
+): boolean =>
+    !!freshFetch && configStore.hasItems() && !configStore.isLocalStorageStale
 
 const filterNewOnRemote = (parameters: FilterNewBranchesParams) => {
     const remote = new Set(parameters.remoteBranches)
@@ -71,7 +72,7 @@ export default async function (
     )?.stdout.trim()
 
     if (options?.fetchRemote) {
-        if (shouldFetchFromLocalStore(configStoreApi, options.fromLocalStore)) {
+        if (shouldFetchFromLocalStore(configStoreApi, options.freshFetch)) {
             remoteBranches = configStoreApi.get('remoteBranches')
         } else {
             remoteBranches = (

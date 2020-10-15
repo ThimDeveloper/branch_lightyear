@@ -6,7 +6,7 @@ import childProcess from 'child_process'
 const exec = util.promisify(childProcess.exec)
 /* Interfaces */
 interface PickRemoteBranchOptions {
-    fromLocalStore?: boolean
+    freshFetch?: boolean
 }
 export default async function (
     options: PickRemoteBranchOptions
@@ -17,7 +17,7 @@ export default async function (
             message: 'Which new (remote) branch would you like to check out?',
             fetchRemote: true,
             withSearch: true,
-            fromLocalStore: options.fromLocalStore,
+            freshFetch: options.freshFetch,
         })
 
         if (branch) {

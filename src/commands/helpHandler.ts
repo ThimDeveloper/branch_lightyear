@@ -22,8 +22,8 @@ const helpDescription: Record<string, string> = {
     pick: `
         bl pick <option>
 
-        -r, --remote ....... checkout remote branch with fuzzy search functionality
-        -c --cache ......... pick from cached list of branches of available (remote only)
+        -r, --remote ....... checkout remote branch with fuzzy search functionality (Note: will fetch from cache or fetch and automatically save most recent list in cache for 15 minutes)
+        -f --fresh ......... pick branch from fresh remote and overwrite stored list of remote branches in cache with new list (remote only)
         `,
     create: `
         bl create <option>

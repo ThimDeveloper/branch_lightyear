@@ -16,7 +16,7 @@ interface BranchListPromptParams {
     multipleChoice?: boolean
     fetchRemote?: boolean
     withSearch?: boolean
-    fromLocalStore?: boolean
+    freshFetch?: boolean
 }
 export default async function ({
     message,
@@ -24,9 +24,9 @@ export default async function ({
     multipleChoice = false,
     fetchRemote = false,
     withSearch = false,
-    fromLocalStore = false,
+    freshFetch = false,
 }: BranchListPromptParams): Promise<Answers> {
-    const branchList = await getBranchList({ fetchRemote, fromLocalStore })
+    const branchList = await getBranchList({ fetchRemote, freshFetch })
 
     let questions: Question[] = []
 
